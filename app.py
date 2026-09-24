@@ -3,9 +3,12 @@ import streamlit as st
 import os
 
 
-os.environ["OPENAI_API_BASE"] = 'https://api.groq.com/openai/v1'
-os.environ["OPENAI_MODEL_NAME"] ='llama3-8b-8192'  # Adjust based on available model
-os.environ["OPENAI_API_KEY"] ='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'
+os.environ.setdefault("OPENAI_API_BASE", "https://api.groq.com/openai/v1")
+os.environ.setdefault("OPENAI_MODEL_NAME", "llama3-8b-8192")
+
+if not os.environ.get("OPENAI_API_KEY"):
+    st.error("Set OPENAI_API_KEY in your environment before starting the app.")
+    st.stop()
 
 
 
